@@ -1,0 +1,11 @@
+.header-text{
+    margin-top: 15%;
+    font-size: 20px;
+}
+.header-text h1{
+    font-size: 50px;
+    margin-top: 20px;
+}
+.header-text h1 span{
+    color: #441aff;
+}

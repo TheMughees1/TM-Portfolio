@@ -1,0 +1,59 @@
+.navbar{
+    height: 5rem;
+    width: 100vw;
+    max-width: 75rem;
+    margin: 0 auto;
+    padding: 1rem 2rem ;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: sticky;
+    top: 0;
+    z-index: 3;
+    justify-content: space-between;
+    font-family:sans-serif , Georgia, Times, 'Times New Roman', serif
+    }
+nav ul li{
+    display: inline-block;
+    list-style: none;
+    margin: 10px 20px;
+}
+nav ul li a{
+    color: #fff;
+    text-decoration: none;
+    font-size: 14px;
+    position: relative;
+}
+nav ul li a::after{
+    content: '';
+    width: 0;
+    height: 3px;
+    background: #441aff;
+    position: absolute;
+    left: 0%;
+    bottom: -6px;
+    transition: 0.5s;
+}
+nav ul li a:hover::after{
+    width: 100%;
+}
+.logo{
+    object-fit: cover;
+    height: 3rem;
+    width: 4rem;
+}
+.desktopMenuBtn{
+    background: white;
+    color: black;
+    align-items: center;
+    justify-content: center;
+    padding: 0 1rem;
+    border-radius: 2rem;
+}
+.desktopMenuImg{
+    object-fit: cover;
+    height: 1rem;
+    width: 1rem;
+    margin: 1rem;
+    
+    }
