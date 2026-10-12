@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0b1020">
+<title>TM Tic Tac Toe</title>
+<style>
+:root{color-scheme:dark;--bg:#0b1020;--panel:#131b31;--line:#293552;--text:#eef3ff;--muted:#9ba9c8;--cyan:#59e1ff;--purple:#a78bfa}
+*{box-sizing:border-box}body{margin:0;min-height:100vh;display:grid;place-items:center;padding:22px;background:radial-gradient(ellipse at 15% 0%,#20244b 0,transparent 45%),radial-gradient(ellipse at 90% 90%,#12334a 0,transparent 40%),var(--bg);font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif;color:var(--text)}
+.app{width:min(100%,430px);text-align:center}.brand{font-size:.76rem;letter-spacing:.22em;color:var(--cyan);font-weight:800}.brand span{color:var(--purple)}h1{font-size:clamp(2rem,8vw,3rem);margin:12px 0 6px;letter-spacing:-.05em}.sub{margin:0 0 24px;color:var(--muted);font-size:.95rem}
+.panel{background:linear-gradient(145deg,rgba(24,34,59,.96),rgba(15,23,42,.96));border:1px solid var(--line);border-radius:24px;padding:22px;box-shadow:0 24px 70px #0005}
+.scoreboard{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:18px}.score{border:1px solid var(--line);background:#0d1528;border-radius:14px;padding:11px 5px}.score strong{display:block;font-size:1.4rem}.score small{color:var(--muted);font-size:.75rem}.score.x strong{color:var(--cyan)}.score.o strong{color:var(--purple)}
+.status{min-height:28px;margin:12px 0 18px;color:#dce6ff;font-weight:650}
+.board{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.cell{aspect-ratio:1;border:1px solid #344261;border-radius:16px;background:linear-gradient(145deg,#192541,#10192d);font-size:clamp(2.6rem,13vw,4rem);font-weight:800;cursor:pointer;transition:transform .15s,border-color .15s,background .15s}.cell:hover:enabled{transform:translateY(-2px);border-color:var(--cyan)}.cell:focus-visible,button:focus-visible{outline:3px solid #fff;outline-offset:3px}.cell.x{color:var(--cyan)}.cell.o{color:var(--purple)}.cell.win{background:#24404b;border-color:var(--cyan);box-shadow:inset 0 0 24px #59e1ff20}.cell:disabled{cursor:default}
+.actions{display:flex;gap:10px;margin-top:18px}.btn{flex:1;border:0;border-radius:12px;padding:13px 16px;font-weight:750;cursor:pointer}.primary{background:linear-gradient(100deg,var(--cyan),#9af5e2);color:#081321}.secondary{background:#202b45;border:1px solid #344261;color:var(--text)}.hint{margin:18px 0 0;color:var(--muted);font-size:.78rem}.hint kbd{padding:2px 6px;border:1px solid #465473;border-radius:5px;color:#dbe7ff}
+</style>
+</head>
+<body>
+<main class="app">
+  <div class="brand">TM <span>STUDIO</span></div>
+  <h1>Tic Tac Toe</h1>
+  <p class="sub">A tiny game. A big brain battle.</p>
+  <section class="panel" aria-label="Tic Tac Toe game">
+    <div class="scoreboard" aria-label="Score">
+      <div class="score x"><strong id="scoreX">0</strong><small>Player X</small></div>
+      <div class="score"><strong id="scoreD">0</strong><small>Draws</small></div>
+      <div class="score o"><strong id="scoreO">0</strong><small>Player O</small></div>
+    </div>
+    <div class="status" id="status" aria-live="polite">Player X's turn</div>
+    <div class="board" id="board" role="group" aria-label="Game board">
+      <button class="cell" data-i="0" aria-label="Cell 1"></button><button class="cell" data-i="1" aria-label="Cell 2"></button><button class="cell" data-i="2" aria-label="Cell 3"></button>
+      <button class="cell" data-i="3" aria-label="Cell 4"></button><button class="cell" data-i="4" aria-label="Cell 5"></button><button class="cell" data-i="5" aria-label="Cell 6"></button>
+      <button class="cell" data-i="6" aria-label="Cell 7"></button><button class="cell" data-i="7" aria-label="Cell 8"></button><button class="cell" data-i="8" aria-label="Cell 9"></button>
+    </div>
+    <div class="actions"><button class="btn primary" id="restart">New Round</button><button class="btn secondary" id="reset">Reset Score</button></div>
+  </section>
+  <p class="hint">Two players · Same device · No downloads needed</p>
+</main>
+<script>
+(() => {
+  const cells = [...document.querySelectorAll('.cell')];
+  const status = document.getElementById('status');
+  const scoreEls = {X:document.getElementById('scoreX'), O:document.getElementById('scoreO'), D:document.getElementById('scoreD')};
+  const lines = [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]];
+  let board = Array(9).fill(''), turn = 'X', active = true, scores = {X:0,O:0,D:0};
+  function winner(){ for(const line of lines){const [a,b,c]=line;if(board[a]&&board[a]===board[b]&&board[a]===board[c])return line;} return null; }
+  function play(i){
+    if(!active||board[i])return;
+    board[i]=turn; cells[i].textContent=turn; cells[i].classList.add(turn.toLowerCase()); cells[i].setAttribute('aria-label','Cell '+(i+1)+', '+turn); cells[i].disabled=true;
+    const won=winner();
+    if(won){active=false;scores[turn]++;scoreEls[turn].textContent=scores[turn];won.forEach(n=>cells[n].classList.add('win'));status.textContent='🎉 Player '+turn+' wins!';cells.forEach(c=>c.disabled=true);return;}
+    if(board.every(Boolean)){active=false;scores.D++;scoreEls.D.textContent=scores.D;status.textContent="It's a draw! 🤝";return;}
+    turn=turn==='X'?'O':'X';status.textContent="Player "+turn+"'s turn";
+  }
+  function newRound(){board=Array(9).fill('');turn='X';active=true;cells.forEach((c,i)=>{c.textContent='';c.className='cell';c.disabled=false;c.setAttribute('aria-label','Cell '+(i+1));});status.textContent="Player X's turn";}
+  cells.forEach(c=>c.addEventListener('click',()=>play(Number(c.dataset.i))));
+  document.getElementById('restart').addEventListener('click',newRound);
+  document.getElementById('reset').addEventListener('click',()=>{scores={X:0,O:0,D:0};Object.keys(scoreEls).forEach(k=>scoreEls[k].textContent='0');newRound();});
+})();
+</script>
+</body>
+</html>
