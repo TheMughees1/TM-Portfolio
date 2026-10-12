@@ -12,9 +12,6 @@ export default function Navbar() {
       <div className="desktoMenu">
         <ul>
           <li><a href="#header">Home</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#services">Services</a></li>
-          <li><a href="#portfolio">Projects</a></li>
           <li><a href="https://github.com/TheMughees1" target="_blank" rel="noreferrer">GitHub</a></li>
         </ul>
       </div>
