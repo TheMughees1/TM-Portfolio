@@ -1,44 +1,28 @@
 # TM Portfolio
 
-A personal portfolio website built with **React.js** to showcase projects, skills, and web development work.
+A responsive personal portfolio for **Mughees ur Rehman**, built with plain **HTML, CSS, and JavaScript** — no React, npm, or build step required.
 
-## 🛠️ Tech Stack
+## Features
+- Responsive desktop and mobile layout
+- Mobile navigation menu
+- About, skills, selected projects, and contact sections
+- Smooth scrolling and active section navigation
+- Reduced-motion accessibility support
+- Lightweight static files suitable for GitHub Pages
 
-- React.js
-- JavaScript
-- CSS
-- React Scroll
+## Run locally
+Open `index.html` in your browser. No installation or build command is required.
 
-## 🚀 Getting Started
+## Files
+- `index.html` — page structure and content
+- `style.css` — layout, responsive styles, and visual design
+- `script.js` — mobile menu, active navigation, and current year
+- `src/assests/` — existing portfolio images and logo
 
-Clone the repository and install the dependencies:
+## Projects
+- [TM Studio Portfolio](https://github.com/TheMughees1/TM-Studio-Simple-portfolio)
+- [Snake Game](https://github.com/TheMughees1/TM-Snake-Game)
+- [Calculator Web App](https://github.com/TheMughees1/stopwaych)
 
-```bash
-npm install
-```
-
-Start the development server:
-
-```bash
-npm start
-```
-
-The app will run locally at:
-
-```
-http://localhost:3000
-```
-
-## 📦 Production Build
-
-Create an optimized production build with:
-
-```bash
-npm run build
-```
-
-## 👤 Author
-
-**Mughees ur Rehman**
-
-GitHub: [@TheMughees1](https://github.com/TheMughees1)
+## Author
+**Mughees ur Rehman** · [GitHub @TheMughees1](https://github.com/TheMughees1)
