@@ -1,27 +1,24 @@
-import React from 'react'
-import'./navbar.css'
-import logo from'./../../assests/logo.png.png'
-import contactImg from '../NavBar/contact.png.png'
-import {Link} from 'react-scroll';
-const Navbar = () => {
-  return (
-    <nav className="navbar">
-        <img src={logo} alt="logo" className='logo' />
-        <div className="desktoMenu">
-        <ul>
-                    <li><a class="active" href="#Home">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#services">Services</a></li>
-                    <li><a href="#portfolio">Portfolio</a></li>
-                    <li><a href="#Contact">Contact</a></li>
-                </ul>
-        </div>
-        <button className="desktopMenuBtn">
-            <img src="contact.png.png" alt="" className="desktopMenuImg" />
-        Contact Me
-        </button>
-    </nav>
-  )
-}
+import React from "react";
+import "./navbar.css";
+import logo from "../../assests/logo.png.png";
 
-export default Navbar
+export default function Navbar() {
+  return (
+    <nav className="navbar" aria-label="Main navigation">
+      <a className="navbar-brand" href="#header" aria-label="Mughees portfolio home">
+        <img src={logo} alt="TM Studio" className="logo" />
+        <span>TM<span className="brand-accent">.</span></span>
+      </a>
+      <div className="desktoMenu">
+        <ul>
+          <li><a href="#header">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#portfolio">Projects</a></li>
+          <li><a href="https://github.com/TheMughees1" target="_blank" rel="noreferrer">GitHub</a></li>
+        </ul>
+      </div>
+      <a className="desktopMenuBtn" href="mailto:bhattimughees195@gmail.com">Contact me <span aria-hidden="true">↗</span></a>
+    </nav>
+  );
+}
