@@ -1,59 +1,34 @@
-.navbar{
-    height: 5rem;
-    width: 100vw;
-    max-width: 75rem;
-    margin: 0 auto;
-    padding: 1rem 2rem ;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: sticky;
-    top: 0;
-    z-index: 3;
-    justify-content: space-between;
-    font-family:sans-serif , Georgia, Times, 'Times New Roman', serif
-    }
-nav ul li{
-    display: inline-block;
-    list-style: none;
-    margin: 10px 20px;
+.navbar {
+  width: min(100% - 3rem, 70rem);
+  min-height: 5rem;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  color: #f5f6ff;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  background: rgba(11, 14, 25, .82);
+  backdrop-filter: blur(16px);
 }
-nav ul li a{
-    color: #fff;
-    text-decoration: none;
-    font-size: 14px;
-    position: relative;
+.navbar-brand { display: inline-flex; align-items: center; gap: .55rem; color: #f5f6ff; text-decoration: none; font-size: 1.15rem; font-weight: 850; letter-spacing: -.04em; }
+.logo { display: block; object-fit: contain; width: 2.5rem; height: 2.5rem; }
+.brand-accent { color: #a78bfa; }
+.desktoMenu ul { display: flex; align-items: center; gap: clamp(.8rem, 2vw, 1.6rem); margin: 0; padding: 0; list-style: none; }
+.desktoMenu a { position: relative; color: #b9c0d0; text-decoration: none; font-size: .85rem; transition: color .15s ease; }
+.desktoMenu a:hover { color: #fff; }
+.desktoMenu a::after { content: ""; position: absolute; left: 0; right: 100%; bottom: -.45rem; height: 2px; background: #a78bfa; transition: right .15s ease; }
+.desktoMenu a:hover::after { right: 0; }
+.desktopMenuBtn { display: inline-flex; align-items: center; gap: .6rem; white-space: nowrap; border: 1px solid #3a4056; border-radius: 999px; padding: .7rem 1rem; color: #f5f6ff; text-decoration: none; font-size: .82rem; font-weight: 700; transition: background .15s ease, border-color .15s ease; }
+.desktopMenuBtn:hover { background: #211d37; border-color: #a78bfa; }
+.desktopMenuBtn span { color: #a78bfa; }
+@media (max-width: 720px) {
+  .navbar { width: calc(100% - 2rem); min-height: 4.5rem; gap: .7rem; flex-wrap: wrap; padding: .7rem 0; }
+  .desktoMenu { order: 3; width: 100%; overflow-x: auto; }
+  .desktoMenu ul { justify-content: center; gap: 1rem; }
+  .desktoMenu a { font-size: .78rem; }
+  .desktopMenuBtn { padding: .6rem .8rem; font-size: .75rem; }
 }
-nav ul li a::after{
-    content: '';
-    width: 0;
-    height: 3px;
-    background: #441aff;
-    position: absolute;
-    left: 0%;
-    bottom: -6px;
-    transition: 0.5s;
-}
-nav ul li a:hover::after{
-    width: 100%;
-}
-.logo{
-    object-fit: cover;
-    height: 3rem;
-    width: 4rem;
-}
-.desktopMenuBtn{
-    background: white;
-    color: black;
-    align-items: center;
-    justify-content: center;
-    padding: 0 1rem;
-    border-radius: 2rem;
-}
-.desktopMenuImg{
-    object-fit: cover;
-    height: 1rem;
-    width: 1rem;
-    margin: 1rem;
-    
-    }
