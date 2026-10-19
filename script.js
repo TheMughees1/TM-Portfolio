@@ -82,7 +82,7 @@ if ("IntersectionObserver" in window) {
   let frame = 0;
   let imageData = null;
   const source = new Image();
-  source.src = "src/assests/me.png.png";
+  source.src = "src/assests/hero-denim.webp";
 
   function resize() {
     const bounds = canvas.getBoundingClientRect();
