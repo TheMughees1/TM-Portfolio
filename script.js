@@ -177,15 +177,16 @@ if ("IntersectionObserver" in window) {
   }
 
   source.addEventListener("load", () => {
+    cancelAnimationFrame(frame);
     resize();
   });
-  source.addEventListener("error", () => resize());
+  source.addEventListener("error", () => {
+    cancelAnimationFrame(frame);
+    resize();
+  });
   if (source.complete) resize();
   window.addEventListener("resize", () => {
     cancelAnimationFrame(frame);
     resize();
   });
-  if (!reducedMotion) {
-    frame = requestAnimationFrame(draw);
-  }
 })();
