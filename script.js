@@ -190,3 +190,53 @@ if ("IntersectionObserver" in window) {
     resize();
   });
 })();
+
+(function initComponentShelf() {
+  const track = document.getElementById("componentTrack");
+  if (!track) return;
+  const cards = [...track.querySelectorAll(".shelf-card")];
+  const dots = [...document.querySelectorAll("[data-component-go]")];
+  const count = document.getElementById("componentCount");
+  const prev = document.querySelector("[data-component-prev]");
+  const next = document.querySelector("[data-component-next]");
+  let active = 0;
+  let drag = null;
+
+  function goTo(index) {
+    active = (index + cards.length) % cards.length;
+    const card = cards[active];
+    track.scrollTo({ left: card.offsetLeft - track.offsetLeft, behavior: "smooth" });
+    dots.forEach((dot, i) => dot.classList.toggle("active", i === active));
+    if (count) count.textContent = String(active + 1).padStart(2, "0") + " / " + String(cards.length).padStart(2, "0");
+  }
+  prev?.addEventListener("click", () => goTo(active - 1));
+  next?.addEventListener("click", () => goTo(active + 1));
+  dots.forEach((dot) => dot.addEventListener("click", () => goTo(Number(dot.dataset.componentGo))));
+  track.addEventListener("keydown", (event) => {
+    if (event.key === "ArrowRight") { event.preventDefault(); goTo(active + 1); }
+    if (event.key === "ArrowLeft") { event.preventDefault(); goTo(active - 1); }
+  });
+  track.addEventListener("scroll", () => {
+    const center = track.scrollLeft + track.clientWidth * .36;
+    let nearest = 0, distance = Infinity;
+    cards.forEach((card, index) => {
+      const d = Math.abs(card.offsetLeft - track.offsetLeft - center);
+      if (d < distance) { distance = d; nearest = index; }
+    });
+    active = nearest;
+    dots.forEach((dot, i) => dot.classList.toggle("active", i === active));
+    if (count) count.textContent = String(active + 1).padStart(2, "0") + " / " + String(cards.length).padStart(2, "0");
+  }, { passive: true });
+  track.addEventListener("pointerdown", (event) => {
+    if (event.pointerType === "touch") return;
+    drag = { startX: event.clientX, scrollLeft: track.scrollLeft, pointerId: event.pointerId };
+    track.setPointerCapture(event.pointerId);
+  });
+  track.addEventListener("pointermove", (event) => {
+    if (!drag) return;
+    track.scrollLeft = drag.scrollLeft - (event.clientX - drag.startX);
+  });
+  const endDrag = () => { drag = null; };
+  track.addEventListener("pointerup", endDrag);
+  track.addEventListener("pointercancel", endDrag);
+})();
