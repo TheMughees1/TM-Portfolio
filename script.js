@@ -240,3 +240,23 @@ if ("IntersectionObserver" in window) {
   track.addEventListener("pointerup", endDrag);
   track.addEventListener("pointercancel", endDrag);
 })();
+
+(function initScrollProgress() {
+  const bar = document.getElementById("scrollProgress");
+  if (!bar) return;
+  let queued = false;
+  function update() {
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = max > 0 ? Math.min(1, Math.max(0, window.scrollY / max)) : 0;
+    bar.style.transform = "scaleX(" + progress + ")";
+    queued = false;
+  }
+  function onScroll() {
+    if (queued) return;
+    queued = true;
+    requestAnimationFrame(update);
+  }
+  window.addEventListener("scroll", onScroll, { passive: true });
+  window.addEventListener("resize", onScroll);
+  update();
+})();
