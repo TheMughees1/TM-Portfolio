@@ -26,8 +26,8 @@ a{color:inherit;text-decoration:none}button{font:inherit;color:inherit}::selecti
 .hero-wordmark-wrap{position:relative;z-index:4;width:100%;padding:0 4.3% 7.2vh;pointer-events:none}
 .hero-overline{margin:0 0 9px 1.2%;font:500 .58rem "IBM Plex Mono",monospace;letter-spacing:.2em;color:#aaa;opacity:0;animation:fade-up 1s .4s forwards}
 .hero-wordmark{display:flex;justify-content:center;align-items:baseline;margin:0;font-size:clamp(5.6rem,17.1vw,15.5rem);line-height:.76;letter-spacing:-.105em;font-weight:900;text-transform:uppercase;white-space:nowrap;filter:drop-shadow(0 13px 26px #000c);transform-origin:center}
-.hero-wordmark span{display:inline-block;background:linear-gradient(180deg,#fff 1%,#eee 24%,#a8a8a8 54%,#555 83%,#272727 100%);background-clip:text;-webkit-background-clip:text;color:transparent;-webkit-text-fill-color:transparent;animation:word-reveal 1.25s cubic-bezier(.2,.8,.2,1) both}
-.hero-wordmark span+span{animation-delay:.12s}
+.hero-wordmark>.word-part{display:inline-block;background:none;animation:none}
+.hero-wordmark .hero-letter{display:inline-block;background:linear-gradient(180deg,#fff 1%,#eee 24%,#a8a8a8 54%,#555 83%,#272727 100%);background-clip:text;-webkit-background-clip:text;color:transparent;-webkit-text-fill-color:transparent;animation:word-reveal 1.05s cubic-bezier(.2,.8,.2,1) both;animation-delay:calc(var(--letter-index)*.045s)}
 .hero-baseline{display:flex;align-items:flex-end;justify-content:space-between;padding:24px 1.2% 0;gap:24px}
 .hero-baseline p{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;margin:0}
 .hero-baseline strong{font-size:clamp(.8rem,1.6vw,1.4rem);font-weight:700;letter-spacing:-.03em}
