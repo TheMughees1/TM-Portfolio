@@ -392,3 +392,8 @@ a{color:inherit;text-decoration:none}button{font:inherit;color:inherit}::selecti
  .contact-left .availability{margin:29px 0 18px;font-size:.47rem}.contact-left h2{font-size:clamp(3.25rem,15vw,5rem)}
  .contact-left>p{font-size:.84rem}.contact-panel{border-radius:16px}.contact-detail{padding:19px 17px}
 }
+
+
+/* Fixed reference-style navigation and page progress line */
+.site-header{position:fixed}
+.scroll-progress{position:absolute;left:0;right:0;bottom:0;height:1px;background:#e8e4dc;transform:scaleX(0);transform-origin:left center;opacity:.7;pointer-events:none}
